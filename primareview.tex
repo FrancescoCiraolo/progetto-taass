@@ -4,9 +4,10 @@
 \usepackage{lmodern}
 \usepackage[italian]{babel}
 \usetheme{Boadilla}
+\date{15 Novembre 2021}
 \begin{document}
 	\author{Ciraolo, Porta, Rizzi}
-	\title{Prima review\\INA System}
+	\title[IiNA System]{Prima review\\IiNA System}
 	%\subtitle{}
 	%\logo{}
 	%\institute{}
@@ -39,12 +40,12 @@
 				\end{center}
 				\begin{itemize}
 					\item Non è un "portafogli" e non tiene valore economico
-					\item Non gestisce i pagamenti fra gli utenti\footnotemark[1]
+					\item Non gestisce i pagamenti fra gli utenti%\footnotemark[1]
 					\item Non implementa un sistema per trovare partecipanti
 				\end{itemize}
 			\end{column}
 		\end{columns}
-		\footnotetext[1]{Potenziale aggiunta futura}
+%		\footnotetext[1]{Potenziale aggiunta futura}
 	\end{frame}
 
 	\begin{frame}
@@ -55,6 +56,10 @@
 			\item Facilità di saldo di crediti e debiti data la risoluzione ottimizzata
 			\item Mantenimento di \textit{prove di acquisto}
 			\item Automatizzazione della risoluzione
+			\item Planning del viaggio o degli eventi
+			\item Decisioni condivise e democratiche
+			\item Organizzazione di grandi gruppi, eventualmente modulari
+			\item[] \includegraphics[width=.1\linewidth]{gnu.png}
 		\end{itemize}
 	\end{frame}
 
@@ -71,18 +76,165 @@
 
 	\begin{frame}
 		\frametitle{Initial Project plan summary}
+		% TODO: telegram bot development
+		\begin{columns}
+			\begin{column}{.45\linewidth}
+				\begin{itemize}
+					\item Novembre
+					\begin{itemize}
+						\item Spikes
+						\item Analisi componenti critici 
+						\item Modellazione delle funzionalità principali
+						\item Mockups dettagliati
+						\item Sviluppo iniziale del core
+					\end{itemize}
+					\item 15/12/21
+					\begin{itemize}
+						\item Gestione dei gruppi a livello singolo
+						\item Elezioni admin
+						\item Primi stadi web app e android app
+					\end{itemize}
+				\end{itemize}
+			\end{column}
+			\begin{column}{.45\linewidth}
+				\begin{itemize}
+					\item Fine Dicembre
+					\begin{itemize}
+						\item Gruppi multilivello
+						\item Debiti individuali
+						\item Board
+						\item Secondo stadio delle applicazioni
+					\end{itemize}
+					\item Metà gennaio
+					\begin{itemize}
+						\item Pools e planning
+						\item Refactoring and polishing
+						\item Completamento prima release applicazioni
+					\end{itemize}
+				\end{itemize}
+			\end{column}
+		\end{columns}
+		
+%		\begin{itemize}
+%			\item Novembre
+%			\begin{itemize}
+%				\item Spikes
+%				\item Analisi componenti critici 
+%				\item Modellazione delle funzionalità principali
+%				\item Mockups dettagliati
+%				\item Sviluppo iniziale del core
+%			\end{itemize}
+%			\item 15/12/21
+%			\begin{itemize}
+%				\item Gestione dei gruppi a livello singolo
+%				\item Elezioni admin
+%				\item Primi stadi web app e android app
+%			\end{itemize}
+%			\item Fine Dicembre
+%			\begin{itemize}
+%				\item Gruppi multilivello
+%				\item Debiti individuali
+%				\item Board
+%				\item Secondo stadio delle applicazioni
+%			\end{itemize}
+%			\item Metà gennaio
+%			\begin{itemize}
+%				\item Pools e planning
+%				\item Refactoring and polishing
+%				\item Completamento prima release applicazioni
+%			\end{itemize}
+%		\end{itemize}
 	\end{frame}
 
 	\begin{frame}
 		\frametitle{Status as of November 15, 2021}
+		
+		\begin{itemize}
+			\item User stories
+			\item Alcuni spikes
+			\item Mockups
+			\item Bozza di interazioni
+			\item CRC cards
+		\end{itemize}
 	\end{frame}
+
+	\section{User stories}
 	
 	\begin{frame}
-		\frametitle{User stories}
+		\begin{itemize}
+			\item \textbf{Creazione del gruppo}
+			
+			\item[] Stiamo partendo in vacanza noi 10 del gruppo e abbiamo deciso di gestire le spese per ridurre al minimo il giro di piccoli pagamenti fra noi.
+			
+			Creiamo un gruppo in cui aggiungiamo tutti i partecipanti alla gita e poniamo un budget per la vacanza come indicatore.
+			
+			\item \textbf{Aggiunta costo sostenuto}
+			
+			\item[] Mentre stiamo andando verso il Monte Bianco iniziamo a pagare il primo pedaggio, siamo divisi in tre auto e il costo è fisso per tutte.
+			
+			Subito dopo aver pagato aggiungiamo i tre costi sostenuti al sistema con una descrizione degli stessi. Viene aggiunta la data e posso allegare la foto della ricevuta.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\begin{itemize}
+			\item \textbf{Aggiunta credito uno a uno}
+			
+			\item[] Mario ha pagato i 18 euro di pedaggio ma gli mancavano le monete e gliele ho fornite io, per cui ho aggiunto al sistema questo credito verso Mario; alla risoluzione ne verrà tenuto in conto.
+			
+			Serve solo che lui confermi questa transazione per aggiungerla allo storico.
+			
+			\item \textbf{Risoluzione dei debiti}
+			
+			\item[] La vacanza è finita e vanno saldati i conti, chiudiamo il gruppo ed il sistema risolve i debiti in modo da avere la lista finale di debiti ottimizzata. Ovvero con ciascuno solo debitore o creditore e un numero di transazioni ridotte al minimo.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\begin{itemize}
+			\item \textbf{Votazioni e organizzazione}
+			
+			\item[] Nel prepare la scampagnata dobbiamo decidere cosa portare in tavola. Siamo in tanti e l'organizzazione risulta complicata.
+			
+			Creo il gruppo come amministratore e apro una bacheca; in essa ciascuno può inserire se si impegna a portare qualcosa ed in seguito aggiungerà il costo sostenuto.
+			
+			Prima però dobbiamo decidere tutti insieme cosa mangiare per cui creo dei sondaggi sulle varie portate e ciascuno può esprimere la preferenza.
+			
+			\item \textbf{Amministrazione}
+			
+			\item[] Deciso il cibo mi rendo conto che non ho spazio a sufficienza in casa per tenere anche le bevande per cui chiedo a qualcun altro di amministare la gestione delle bibite.
+			
+			Possiamo tutti votare per un nuovo admin, che si candidato, e chi prende più voti diventa il nostro \textit{somalier}.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\begin{itemize}
+			\item \textbf{Fusione di gruppi}
+			
+			\item[] Lucia si laurea la prossima settimana e noi del gruppo dell'Università abbiamo deciso di fare un regalo insieme; nel frattempo però il suo gruppo di amici da casa ci ha contattato proponendo di fare un regalo più grande insieme.
+			
+			A questo punto abbiamo deciso di unire il nostro gruppo regalo già fatto al loro e provare ad organizzare il regalo, sia nella decisione che nella raccolta dei fondi, tutti insieme.
+			
+			Nell'unire i due gruppi vengono considerati i partecipanti in modo che il costo sia diviso equamente ad eccezzione di chi vuol contribuire di più per i fatti loro.
+			
+			Gli amministratori dei due gruppi, se assenti vengono eletti, diventano i responsabili per il proprio gruppo e fra loro avviene, se possibile, il saldo economico fra i due gruppi.
+			
+			Le votazioni sono come sempre e ciascuno ha un voto unitario.
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}
 		\frametitle{Spikes to be done}
+		
+		\begin{itemize}
+			\item Spring
+			\item Android
+			\item Docker
+			\item Kubernetes
+			\item OAuth
+			\item Telegram bot
+		\end{itemize}
 	\end{frame}
 	
 	\begin{frame}
