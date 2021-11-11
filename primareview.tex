@@ -248,13 +248,14 @@
 		
 		\begin{figure}
 			\begin{tikzpicture}
-				\node[state,fill=mycolor] (event) {Evento};
-				\node[state,fill=mycolor] (group) [below = 2cm of event] {Gruppo};
-				\node[state,fill=mycolor] (home) [below left = 0.5cm and 2.5cm of event] {Home};
-				\node[state,fill=mycolor] (report) [above = 1.5cm of home] {Report};
-				\node[state,fill=mycolor] (sondaggio) [above = 1.6cm of event] {Sondaggio};
-				\node[state,fill=mycolor] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
-				\node[state,fill=mycolor] (bacheca) [above = 1.5cm of transazione] {Bacheca};
+
+				\node[state, minimum size=1.2cm,fill=mycolor] (event) {Evento};
+				\node[state, minimum size=1.2cm,fill=mycolor] (group) [below = 2cm of event] {Gruppo};
+				\node[state, minimum size=1.2cm,fill=mycolor] (home) [below left = 0.5cm and 2.5cm of event] {Home};
+				\node[state, minimum size=1.2cm,fill=mycolor] (report) [above = 1.5cm of home] {Report};
+				\node[state, minimum size=1.2cm,fill=mycolor] (sondaggio) [above = 1.6cm of event] {Sondaggio};
+				\node[state, minimum size=1.2cm,fill=mycolor] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
+				\node[state, minimum size=1.2cm,fill=mycolor] (bacheca) [above = 1.5cm of transazione] {Bacheca};
 				
 				\draw[->] (home) edge node[above,sloped] {Apri evento} (event);
 				\draw[->] (home) edge node[below,sloped] {Crea evento} (event);
