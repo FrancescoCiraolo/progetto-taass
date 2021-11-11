@@ -5,7 +5,7 @@
 \usepackage[italian]{babel}
 \usepackage{tikz}
 \usetikzlibrary{automata,positioning}
-
+\definecolor{mycolor}{RGB}{204,204,255}
 \usetheme{Boadilla}
 \date{15 Novembre 2021}
 \begin{document}
@@ -248,13 +248,13 @@
 		
 		\begin{figure}
 			\begin{tikzpicture}
-				\node[app state] (event) {Evento};
-				\node[app state] (group) [below = 2cm of event] {Gruppo};
-				\node[app state] (home) [below left = 0.5cm and 2.5cm of event] {Home};
-				\node[app state] (report) [above = 1.5cm of home] {Report};
-				\node[app state] (sondaggio) [above = 1.6cm of event] {Sondaggio};
-				\node[app state] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
-				\node[app state] (bacheca) [above = 1.5cm of transazione] {Bacheca};
+				\node[state,fill=mycolor] (event) {Evento};
+				\node[state,fill=mycolor] (group) [below = 2cm of event] {Gruppo};
+				\node[state,fill=mycolor] (home) [below left = 0.5cm and 2.5cm of event] {Home};
+				\node[state,fill=mycolor] (report) [above = 1.5cm of home] {Report};
+				\node[state,fill=mycolor] (sondaggio) [above = 1.6cm of event] {Sondaggio};
+				\node[state,fill=mycolor] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
+				\node[state,fill=mycolor] (bacheca) [above = 1.5cm of transazione] {Bacheca};
 				
 				\draw[->] (home) edge node[above,sloped] {Apri evento} (event);
 				\draw[->] (home) edge node[below,sloped] {Crea evento} (event);
