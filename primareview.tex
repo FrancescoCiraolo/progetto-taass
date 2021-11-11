@@ -249,38 +249,37 @@
 		\begin{figure}
 			\begin{tikzpicture}
 				\node[app state] (event) {Evento};
-				\node[app state] (group) [below = 1.5cm of event] {Gruppo};
+				\node[app state] (group) [below = 2cm of event] {Gruppo};
 				\node[app state] (home) [below left = 0.5cm and 2.5cm of event] {Home};
 				\node[app state] (report) [above = 1.5cm of home] {Report};
-				\node[app state] (sondaggio) [above = 1.5cm of event] {Sondaggio};
+				\node[app state] (sondaggio) [above = 1.6cm of event] {Sondaggio};
 				\node[app state] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
 				\node[app state] (bacheca) [above = 1.5cm of transazione] {Bacheca};
 				
-				\path[->] (home) edge node[above] {Apri evento} (event);
-				\path[->] (home) edge node[below] {Crea evento} (event);
+				\draw[->] (home) edge node[above,sloped] {Apri evento} (event);
+				\draw[->] (home) edge node[below,sloped] {Crea evento} (event);
 				
-				\path[->] (event) edge node[below] {Chiudi evento} (report);
+				\path[->] (event) edge node[below,sloped] {Chiudi evento} (report);
 				
-				\path[->] (home) edge node[below] {Apri report} (report);
+				\path[->] (home) edge node[above,sloped] {Apri report} (report);
 				
-				\path[->] (event) edge node[above] {Apri bacheca} (bacheca);
-				\path[->] (event) edge node[below] {Aggiungi pin} (bacheca);
+				\path[->] (event) edge node[above,sloped] {Apri bacheca} (bacheca);
+				\path[->] (event) edge node[below,sloped] {Aggiungi pin} (bacheca);
 				
-				\path[->] (home) edge node[above] {Apri gruppo} (group);
-				\path[->] (home) edge node[below] {Crea gruppo} (group);
+				\path[->] (home) edge node[above,sloped] {Apri gruppo} (group);
+				\path[->] (home) edge node[below,sloped] {Crea gruppo} (group);
 				
-				\path[->] (event) edge node[below] {Lista partecipanti} (group);
-				\path[->] (group) edge node[above] {Lista eventi} (event);
+				\path[->] (event) edge node[below,sloped] {Lista partecipanti} (group);
+				\path[->] (group) edge node[below,sloped] {Lista eventi} (event);
 				
-				\path[->] (bacheca) edge node[above] {Apri sondaggio} (sondaggio);
-				\path[->] (event) edge node[above] {Sondaggi attivi} (sondaggio);
-				\path[->] (bacheca) edge node[below] {Partecipa sondaggio} (sondaggio);
+				\path[->] (bacheca) edge node[above,sloped] {Apri sondaggio} (sondaggio);
+				\path[->] (event) edge node[above,sloped] {Sondaggi attivi} (sondaggio);
+				\path[->] (bacheca) edge node[below,sloped] {Partecipa sondaggio} (sondaggio);
 				
-				\path[->] (event) edge node[above] {Aggiungere transazione} (transazione);
-				\path[->] (event) edge node[below] {Visualizzare transazione} (transazione);
+				\path[->] (event) edge node[above,sloped] {Aggiungere transazione} (transazione);
+				\path[->] (event) edge node[below,sloped] {Visualizzare transazione} (transazione);
 				
-				\path[->] (group) edge node[above] {Aggiungi partecipante} (group);
-				\path[->] (group) edge node[below] {Rimuovi partecipante} (group);
+				\path[->] (group) edge[loop right = 0.5cm] node{{Aggiungi partecipante}, {Rimuovi partecipante}}(group);
 				
 				
 			\end{tikzpicture}
