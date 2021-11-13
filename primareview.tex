@@ -4,10 +4,30 @@
 \usepackage{lmodern}
 \usepackage[italian]{babel}
 \usepackage{tikz}
+\usepackage{tabularx}
 \usetikzlibrary{automata,positioning}
 \definecolor{mycolor}{RGB}{204,204,255}
 \usetheme{Boadilla}
 \date{15 Novembre 2021}
+
+\newenvironment{crccard}[2]{
+	\center
+%	\table
+	\tabularx{.9\textwidth}{ |*{2}{X|} }
+%	\centering
+	\hline
+	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{#1}}\\\hline
+	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize #2}\\\hline
+	\textbf{\scriptsize Responsabilità} & \textbf{\scriptsize Collaboratori}\\\hline
+}{
+	\endtabularx
+	\endcenter
+%	\endtable
+}
+
+\newcommand{\crcrow}[2][]{\scriptsize #2 & \scriptsize #1 \\\hline}
+
+
 \begin{document}
 	\author{Ciraolo, Porta, Rizzi}
 	\title[IiNA System]{Prima review\\IiNA System}
@@ -286,9 +306,15 @@
 			\end{tikzpicture}
 		\end{figure}
 	\end{frame}
+
+	\section{}
 	
 	\begin{frame}
 		\frametitle{CRC Cards – First draft}
+		
+		\begin{crccard}{Test}{Descrizione di test}
+			\crcrow[A]{Una responsabilità}
+		\end{crccard}
 	\end{frame}
 	
 	\begin{frame}
