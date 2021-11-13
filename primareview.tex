@@ -5,25 +5,39 @@
 \usepackage[italian]{babel}
 \usepackage{tikz}
 \usepackage{tabularx}
+\usepackage{xparse}
 \usetikzlibrary{automata,positioning}
 \definecolor{mycolor}{RGB}{204,204,255}
 \usetheme{Boadilla}
 \date{15 Novembre 2021}
 
-\newenvironment{crccard}[2]{
+\makeatletter
+\def\superclasses{}
+
+\newcommand{\addsuperclasses}[1]{
+	\def\superclasses{
+		\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize Superclasses}\\\hline
+		\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize #1}\\\hline
+	}
+}
+
+\newenvironment{crccard}[3][]{
 	\center
 %	\table
 	\tabularx{.9\textwidth}{ |*{2}{X|} }
 %	\centering
+	\superclasses
+	\def\superclasses{}
 	\hline
-	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{#1}}\\\hline
-	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize #2}\\\hline
+	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{#2}}\\\hline
+	\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize #3}\\\hline
 	\textbf{\scriptsize Responsabilità} & \textbf{\scriptsize Collaboratori}\\\hline
 }{
 	\endtabularx
 	\endcenter
 %	\endtable
 }
+\makeatother
 
 \newcommand{\crcrow}[2][]{\scriptsize #2 & \scriptsize #1 \\\hline}
 
@@ -227,7 +241,7 @@
 			
 			\item[] Deciso il cibo mi rendo conto che non ho spazio a sufficienza in casa per tenere anche le bevande per cui chiedo a qualcun altro di amministare la gestione delle bibite.
 			
-			Possiamo tutti votare per un nuovo admin, che si candidato, e chi prende più voti diventa il nostro \textit{sommelier}.
+			Possiamo tutti votare per un nuovo admin, che si sia candidato, e chi prende più voti diventa il nostro \textit{sommelier}.
 		\end{itemize}
 	\end{frame}
 
@@ -310,9 +324,24 @@
 	\section{}
 	
 	\begin{frame}
+		\begin{itemize}
+			\item Utente
+			\item Amministratore
+			\item Gruppo {stato}
+			\item Evento {budget}
+			\item Ente economica -> {Utente, Gruppo}
+			\item Transazione {creditore, debitore, importo, dettagli}
+			\item Debito {creditore, debitore, importo}
+			\item Bacheca
+			\item Pin
+			\item 
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
 		\frametitle{CRC Cards – First draft}
 		
-		\begin{crccard}{Test}{Descrizione di test}
+		\begin{crccard}G{Test}{Descrizione di test}
 			\crcrow[A]{Una responsabilità}
 		\end{crccard}
 	\end{frame}
