@@ -323,27 +323,171 @@
 
 	\section{}
 	
-	\begin{frame}
-		\begin{itemize}
-			\item Utente
-			\item Amministratore
-			\item Gruppo {stato}
-			\item Evento {budget}
-			\item Ente economica -> {Utente, Gruppo}
-			\item Transazione {creditore, debitore, importo, dettagli}
-			\item Debito {creditore, debitore, importo}
-			\item Bacheca
-			\item Pin
-			\item 
-		\end{itemize}
-	\end{frame}
+%	\begin{frame}
+%		\begin{itemize}
+%			\item Utente
+%			\item Amministratore
+%			\item Gruppo {stato}
+%			\item Evento {budget}
+%			\item Ente economica -> {Utente, Gruppo}
+%			\item Transazione {creditore, debitore, importo, dettagli}
+%			\item Debito {creditore, debitore, importo}
+%			\item Bacheca
+%			\item Pin
+%			\item 
+%		\end{itemize}
+%	\end{frame}
 	
 	\begin{frame}
-		\frametitle{CRC Cards – First draft}
+		\frametitle{CRC Cards – First draft - 1/6}
 		
-		\begin{crccard}G{Test}{Descrizione di test}
-			\crcrow[A]{Una responsabilità}
-		\end{crccard}
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Ente economico}}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Interfaccia per modellare gerico creditore o debitore, sia esso individuo o gruppo}\\\hline
+			\end{tabularx}
+		\end{table}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Utente}}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Modella un generico utilizzatore del sistema}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				\scriptsize Anagrafica & \scriptsize I dati dell'utente\\\hline
+			\end{tabularx}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{CRC Cards – First draft - 2/6}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Gruppo}}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Modella un gruppo di utenti che condividono spese e decidono per un evento}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				\scriptsize Mantenere un insieme di utenti e gruppi di utenti & \scriptsize Utente, Gruppo\\\hline
+				\scriptsize Mantenere l'insieme degli utenti con priviligi di amministrazione & \scriptsize Utente\\\hline
+			\end{tabularx}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{CRC Cards – First draft - 3/6}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Evento}}\\\hline
+%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Evento (presente o pianificato) a cui partecipa (o parteciperà) un gruppo di utenti}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				\scriptsize Stato & \scriptsize Uno fra \{in corso, chiuso, ...\}\\\hline
+				\scriptsize Budget & \scriptsize Opzionale soglia massima di riferimento per le spese\\\hline
+				\scriptsize Deadline & \scriptsize Opzionale data limite per planning e acquisti\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				\scriptsize Mantenere il gruppo di partecipanti & \scriptsize Gruppo\\\hline
+				\scriptsize Mantenere una lista delle transazioni & \scriptsize Transazione\\\hline
+				\scriptsize Collegare ad un eventuale bacheca & \scriptsize Bacheca\\\hline
+			\end{tabularx}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{CRC Cards – First draft - 4/6}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Transazione}}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Una transazione fra un creditore ed un debitore, con eventuali dettagli}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				\scriptsize Importo & \scriptsize Valore economico della transazione\\\hline
+				\scriptsize Dettagli & \scriptsize Eventuali altre informazioni sulla transazione (immagini, date, ...)\\\hline
+				\scriptsize Conferma & \scriptsize Eventuale conferma in caso di prestito\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				\scriptsize Mantenere traccia del debitore e del creditore & \scriptsize Ente economico\\\hline
+%				\scriptsize Mantenere una lista delle transazioni & \scriptsize Transazione\\\hline
+%				\scriptsize Collegare ad un eventuale bacheca & \scriptsize Bacheca\\\hline
+			\end{tabularx}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{CRC Cards – First draft - 5/6}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Debito}}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Debito finale, proposto dal solver, fra utenti}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				\scriptsize Importo & \scriptsize Valore economico della transazione\\\hline
+				%				\scriptsize Dettagli & \scriptsize Eventuali altre informazioni sulla transazione (immagini, date, ...)\\\hline
+				%				\scriptsize Conferma & \scriptsize Eventuale conferma in caso di prestito\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				\scriptsize Mantenere traccia del debitore e del creditore & \scriptsize Utente\\\hline
+				%				\scriptsize Mantenere una lista delle transazioni & \scriptsize Transazione\\\hline
+				%				\scriptsize Collegare ad un eventuale bacheca & \scriptsize Bacheca\\\hline
+			\end{tabularx}
+		\end{table}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{CRC Cards – First draft - 6/6}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Bacheca}}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Aggregatore ed organizer di pin di un evento}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				%				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				%				\scriptsize Stato & \scriptsize Uno fra \{in corso, chiuso, ...\}\\\hline
+				%				\scriptsize Budget & \scriptsize Opzionale soglia massima di riferimento per le spese\\\hline
+				%				\scriptsize Deadline & \scriptsize Opzionale data limite per planning e acquisti\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				\scriptsize Mantenere una collezione, ordinata dagli user, di pin & \scriptsize Pin\\\hline
+				%				\scriptsize Mantenere una lista delle transazioni & \scriptsize Transazione\\\hline
+				%				\scriptsize Collegare ad un eventuale bacheca & \scriptsize Bacheca\\\hline
+			\end{tabularx}
+		\end{table}
+		
+		\begin{table}
+			\begin{tabularx}{.9\textwidth}{ |*{2}{X|} }
+				\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textbf{Pin}}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Superclassi}: \scriptsize Ente economico}\\\hline
+				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\textit{Descrizione}: \scriptsize Interfaccia di vari "widget" ad uso degli utenti per organizzare un evento (sondaggi, calendari, note)}\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Attributi}}\\\hline
+				%				\scriptsize \textit{Attributo} & \scriptsize \textit{Descrizione}\\\hline
+				%				\scriptsize Stato & \scriptsize Uno fra \{in corso, chiuso, ...\}\\\hline
+				%				\scriptsize Budget & \scriptsize Opzionale soglia massima di riferimento per le spese\\\hline
+				%				\scriptsize Deadline & \scriptsize Opzionale data limite per planning e acquisti\\\hline
+				%				\multicolumn{2}{|>{\hsize=\dimexpr2\hsize+2\tabcolsep+\arrayrulewidth\relax}X|}{\scriptsize \textbf{Responsabilità}}\\\hline
+				%				\scriptsize \textit{Responsabilità} & \scriptsize \textit{Collaboratori}\\\hline
+				%				\scriptsize Mantenere una collezione, ordinata dagli user, di pin & \scriptsize Pin\\\hline
+				%				\scriptsize Mantenere una lista delle transazioni & \scriptsize Transazione\\\hline
+				%				\scriptsize Collegare ad un eventuale bacheca & \scriptsize Bacheca\\\hline
+			\end{tabularx}
+		\end{table}
 	\end{frame}
 	
 	\begin{frame}
