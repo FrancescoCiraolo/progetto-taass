@@ -276,6 +276,7 @@
 		\begin{itemize}
 			\item Spring
 			\item Android
+			\item Frontend da definire
 			\item Docker
 			\item Kubernetes
 			\item OAuth
@@ -296,7 +297,7 @@
 				\node[state, minimum size=1.2cm,fill=mycolor] (group) [below = 2cm of event] {Gruppo};
 				\node[state, minimum size=1.2cm,fill=mycolor] (home) [below left = 0.5cm and 2.5cm of event] {Home};
 				\node[state, minimum size=1.2cm,fill=mycolor] (report) [above = 1.5cm of home] {Report};
-				\node[state, minimum size=1.2cm,fill=mycolor] (sondaggio) [above = 1.6cm of event] {Sondaggio};
+				\node[state, minimum size=1.2cm,fill=mycolor] (pin) [above = 1.6cm of event] {Pin};
 				\node[state, minimum size=1.2cm,fill=mycolor] (transazione) [below right = 0.5cm and 2.5cm of event] {Transazione};
 				\node[state, minimum size=1.2cm,fill=mycolor] (bacheca) [above = 1.5cm of transazione] {Bacheca};
 				
@@ -316,9 +317,9 @@
 				\path[->] (event) edge node[below,sloped] {Lista partecipanti} (group);
 				\path[->] (group) edge node[below,sloped] {Lista eventi} (event);
 				
-				\path[->] (bacheca) edge node[above,sloped] {Apri sondaggio} (sondaggio);
-				\path[->] (event) edge node[above,sloped] {Sondaggi attivi} (sondaggio);
-				\path[->] (bacheca) edge node[below,sloped] {Partecipa sondaggio} (sondaggio);
+				\path[->] (bacheca) edge node[above,sloped] {Crea pin} (pin);
+				\path[->] (event) edge node[above,sloped] {Pin attivi} (pin);
+				\path[->] (bacheca) edge node[below,sloped] {Interegisci pin} (pin);
 				
 				\path[->] (event) edge node[above,sloped] {Aggiungere transazione} (transazione);
 				\path[->] (event) edge node[below,sloped] {Visualizzare transazione} (transazione);
