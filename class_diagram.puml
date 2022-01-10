@@ -3,6 +3,8 @@
 hide empty members
 skinparam classAttributeIconSize 0
 
+interface EconomicalEntity {}
+
 class User {
     -id : Number
     -name : String
@@ -11,10 +13,14 @@ class User {
     -credentials : OauthCredentials
 }
 
+User -|> EconomicalEntity
+
 class Group {
     -id : Number
     -name : Number
 }
+
+Group -|> EconomicalEntity
 
 Group "n " o-- "n " User : " groupAdmins"
 Group "n " o-- "n " User : " groupUsers"
@@ -82,8 +88,8 @@ class Transaction {
 }
 
 Transaction -right-* Event
-Transaction "n" --- "n" User : Debtor
-Transaction "n" --- "n" User : Creditor
+Transaction "1" --- "n" EconomicalEntity : Debtor
+Transaction "1" --- "n" EconomicalEntity : Creditor
 
 class Debt {
     - id: Number
