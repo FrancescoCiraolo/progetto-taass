@@ -1,0 +1,103 @@
+@startuml Class Diagram
+
+hide empty members
+skinparam classAttributeIconSize 0
+
+class User {
+    -id : Number
+    -name : String
+    -surname : String
+    -"e-mail" : String
+    -credentials : OauthCredentials
+}
+
+class Group {
+    -id : Number
+    -name : Number
+}
+
+Group "n " o-- "n " User : " groupAdmins"
+Group "n " o-- "n " User : " groupUsers"
+
+class Event {
+    -id : Number
+    -name : String
+    -state : EventState
+    -deadline : Date
+}
+
+Event " 1" o-- " n" Group : "eventGroup"
+
+Event "n" *-- "1" Pin : "pins"
+
+abstract Pin {
+    -id : Number
+    -order: Number
+    -title : String
+    ' Possibilità di aggiungere una "discussione" per il singolo pin
+}
+
+class PollPin {
+    + getPollResults() : Map<PollPinItem, float>
+}
+
+PollPin -|> Pin
+PollPin "n" *-- "1" PollPinItem : items
+
+class PollPinItem {
+    - id : Number
+    - description : String
+    + getVotersCount() : Number
+}
+
+PollPinItem "n" --- "n" User : voters
+
+class DoodlePin {
+    +addParticipantTo(dpi : DoodlePinItem, user : User)
+    +removeParticipantFrom(dpi : DoodlePinItem, user : User)
+}
+
+DoodlePin -|> Pin
+DoodlePin "n" *-- "1" DoodlePinItem : items
+
+class DoodlePinItem {
+    - id : Number
+    - description : String
+    - maximumUsers : Number
+    +addParticipant(user : User)
+    +removeParticipant(user : User)
+    + getParticipantsCount() : Number
+    + setMaxmimumParticipants(count : Number)
+}
+
+DoodlePinItem "maximumUsers" --- "n" User : participants
+
+class Transaction {
+    - id : Number
+    - amount : Currency
+    ' causale
+    - reason : String
+    - details : Blob
+    ' confirmation
+}
+
+Transaction -right-* Event
+Transaction "n" --- "n" User : Debtor
+Transaction "n" --- "n" User : Creditor
+
+class Debt {
+    - id: Number
+    - amount : Number
+}
+
+Debt "1" --right- "n" Event : Origin
+Debt "1" --- "n" User : Debtor
+Debt "1" --- "n" User : Creditor
+
+enum EventState {
+    ACTIVE
+    ENDED
+    CLOSED
+}
+
+@enduml
