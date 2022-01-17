@@ -11,6 +11,7 @@ public class Users {
     public User getUserInfo(@RequestParam(name = "id") String userID) {
         User user = new User();
         user.setUserID(userID);
+        user.setUserName("Nope");
         return user;
     }
 }
