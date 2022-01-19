@@ -13,5 +13,8 @@
         <module>users</module>
         <module>eureka-server</module>
         <module>gateway</module>
+	<module>iina-events</module>
+	<module>iina-dashboards</module>
+	<module>iina-transactions</module>
     </modules>
 </project>
