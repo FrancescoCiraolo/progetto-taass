@@ -9,6 +9,8 @@ services:
   api-gateway:
     container_name: zuul-gateway
     build: ./gateway
+    ports:
+      - '8762:8762'
     environment:
       SPRING_PROFILES_ACTIVE: docker
   service-dashboards:
