@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: dashboards
+  datasource:
+    url: jdbc:postgres://db-dashboards:5432
+    username: postgres
+    password: 1234
+server:
+  port: 8021

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: transactions
+  datasource:
+    url: jdbc:postgres://db-transactions:5434
+    username: postgres
+    password: 1234
+server:
+  port: 8011

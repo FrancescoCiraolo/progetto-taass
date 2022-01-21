@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: events
+  datasource:
+    url: jdbc:postgres://db-events:5433
+    username: postgres
+    password: 1234
+server:
+  port: 8031
