@@ -1,17 +1,18 @@
+version: 3
 services:
   message-broker:
     container_name: rabbit-mq
     image: rabbitmq:alpine
     # Apro la porta temporaneamente perché al momento non sono containerizzati i microservizi
     ports:
-      - 5672:5672
+      - "5672:5672"
   db-dashboards:
     container_name: db-dashboards
     image: postgres:alpine
     environment:
       POSTGRES_PASSWORD: 1234
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
       - db-dashboards:/var/lib/postgresql/data
   db-events:
@@ -21,7 +22,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 1234
     ports:
-      - 5433:5432
+      - "5433:5432"
     volumes:
       - db-events:/var/lib/postgresql/data
   db-transactions:
@@ -30,7 +31,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 1234
     ports:
-      - 5434:5432
+      - "5434:5432"
     volumes:
       - db-transactions:/var/lib/postgresql/data
   db-users:
@@ -39,7 +40,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 1234
     ports:
-      - 5435:5432
+      - "5435:5432"
     volumes:
       - db-users:/var/lib/postgresql/data
 volumes:
