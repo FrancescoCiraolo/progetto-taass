@@ -1,0 +1,98 @@
+version: '3'
+services:
+  service-discovery:
+    container_name: eureka-server
+    build: ./eureka-server
+    # Port exposed to allow interaction with the Web UI.
+    ports:
+       - '8761:8761'
+  api-gateway:
+    container_name: zuul-gateway
+    build: ./gateway
+    ports:
+      - '8762:8762'
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  service-dashboards:
+    container_name: dashboards-service
+    build: ./iina-dashboards
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - db-dashboards
+      - message-broker
+      - service-discovery
+  service-events:
+    container_name: events-service
+    build: ./iina-events
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - db-events
+      - message-broker
+      - service-discovery
+  service-transactions:
+    container_name: transactions-service
+    build: ./iina-transactions
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - db-transactions
+      - message-broker
+      - service-discovery
+  service-users:
+    container_name: users-service
+    build: ./users
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - db-users
+      - message-broker
+      - service-discovery
+  # Exposed ports of following services are only for development purposes and MUST be closed before deployment.
+  message-broker:
+    container_name: rabbit-mq
+    image: rabbitmq:alpine
+    ports:
+      - "5672:5672"
+  db-dashboards:
+    container_name: db-dashboards
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-dashboards:/var/lib/postgresql/data
+  db-events:
+    container_name: db-events
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    volumes:
+      - db-events:/var/lib/postgresql/data
+  db-transactions:
+    container_name: db-transactions
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5434:5432"
+    volumes:
+      - db-transactions:/var/lib/postgresql/data
+  db-users:
+    container_name: db-users
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5435:5432"
+    volumes:
+      - db-users:/var/lib/postgresql/data
+volumes:
+  db-dashboards:
+  db-events:
+  db-transactions:
+  db-users:
