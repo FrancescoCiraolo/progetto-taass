@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db-events
+  name: db-events
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db-events
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db-events
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+          image: postgres:alpine
+          name: db-events
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-events
+      restartPolicy: Always
+      volumes:
+        - name: db-events
+          persistentVolumeClaim:
+            claimName: db-events
+status: {}

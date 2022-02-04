@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db-transactions
+  name: db-transactions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db-transactions
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db-transactions
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+          image: postgres:alpine
+          name: db-transactions
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-transactions
+      restartPolicy: Always
+      volumes:
+        - name: db-transactions
+          persistentVolumeClaim:
+            claimName: db-transactions
+status: {}

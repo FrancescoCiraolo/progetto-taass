@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: message-broker
+  name: message-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: message-broker
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: message-broker
+    spec:
+      containers:
+        - image: rabbitmq:alpine
+          name: rabbit-mq
+          ports:
+            - containerPort: 5672
+          resources: {}
+      restartPolicy: Always
+status: {}

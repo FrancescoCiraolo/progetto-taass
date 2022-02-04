@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: service-users
+  name: service-users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-users
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: service-users
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          image: service-users
+          name: users-service
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db-dashboards
+  name: db-dashboards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db-dashboards
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db-dashboards
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+          image: postgres:alpine
+          name: db-dashboards
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-dashboards
+      restartPolicy: Always
+      volumes:
+        - name: db-dashboards
+          persistentVolumeClaim:
+            claimName: db-dashboards
+status: {}

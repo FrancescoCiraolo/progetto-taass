@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: db-users
+  name: db-users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db-users
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        io.kompose.service: db-users
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+          image: postgres:alpine
+          name: db-users
+          ports:
+            - containerPort: 5432
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-users
+      restartPolicy: Always
+      volumes:
+        - name: db-users
+          persistentVolumeClaim:
+            claimName: db-users
+status: {}

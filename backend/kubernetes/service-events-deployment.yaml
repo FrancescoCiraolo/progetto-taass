@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: service-events
+  name: service-events
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-events
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: service-events
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          image: service-events
+          name: events-service
+          resources: {}
+      restartPolicy: Always
+status: {}

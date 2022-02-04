@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: service-transactions
+  name: service-transactions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-transactions
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: service-transactions
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          image: service-transactions
+          name: transactions-service
+          resources: {}
+      restartPolicy: Always
+status: {}

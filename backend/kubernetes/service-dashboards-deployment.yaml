@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: service-dashboards
+  name: service-dashboards
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: service-dashboards
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: service-dashboards
+    spec:
+      containers:
+        - env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+          image: service-dashboards
+          name: dashboards-service
+          resources: {}
+      restartPolicy: Always
+status: {}
