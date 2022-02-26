@@ -1,0 +1,32 @@
+<div *ngIf="transaction$ | async as transaction else loading">
+  <div *ngIf="!waiting else wait">
+    <div class="col-4">ID</div>
+    <div class="col-8">{{transaction.id}}</div>
+    <div class="col-4">Event ID</div>
+    <div class="col-8">{{transaction.eventID}}</div>
+    <div class="col-4">Debtor ID</div>
+    <div class="col-8">{{transaction.debtorID}}</div>
+    <div class="col-4">Creditor ID</div>
+    <div class="col-8">{{transaction.creditorID}}</div>
+    <div class="col-4">Value</div>
+    <div class="col-8">{{transaction.value}} {{transaction.currency}}</div>
+    <form (ngSubmit)="onSubmit()" #transactionForm="ngForm">
+      <div class="mb-3">
+        <label for="detailsInput">Details</label>
+        <input class="form-control" id="detailsInput" name="details" [(ngModel)]="transaction.details">
+      </div>
+      <div class="mb-3">
+        <label for="imageUrlInput">Image Url</label>
+        <input class="form-control" id="imageUrlInput" name="imageUrl" [(ngModel)]="transaction.imageUrl">
+      </div>
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">Update</button>
+      <button type="button" class="btn btn-warning" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>
+<ng-template #loading>
+  Loading, please wait
+</ng-template>
+<ng-template #wait>
+  Please wait, adding in progress!
+</ng-template>

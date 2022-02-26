@@ -1,0 +1,35 @@
+<div *ngIf="!waiting else wait">
+  <form (ngSubmit)="onSubmit()" #transactionForm="ngForm">
+    <div class="mb-3">
+      <label class="form-label" for="debtorIDInput">Debtor ID</label>
+      <input type="number" class="form-control"  id="debtorIDInput" name="debtorID" [(ngModel)]="transaction.debtorID" >
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="dateInput">Date</label>
+      <input class="form-control"  id="dateInput" name="date" [(ngModel)]="transaction.date" >
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="valueInput">Value</label>
+      <div class="row">
+        <div class="col-10">
+          <input type="number" step="0.01" class="form-control"  id="valueInput" name="value" [(ngModel)]="transaction.value" >
+        </div>
+        <div class="col-2">
+          <input class="form-control" id="currencyInput" name="currency" [(ngModel)]="transaction.currency">
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="detailsInput">Details</label>
+      <input class="form-control" id="detailsInput" name="details" [(ngModel)]="transaction.details">
+    </div>
+    <div class="mb-3">
+      <label for="imageUrlInput">Image Url</label>
+      <input class="form-control" id="imageUrlInput" name="imageUrl" [(ngModel)]="transaction.imageUrl">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  </form>
+</div>
+<ng-template #wait>
+  Please wait, adding in progress!
+</ng-template>

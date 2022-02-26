@@ -1,0 +1,21 @@
+<div  *ngIf="transaction$ | async as transaction">
+  <div class="row">
+    <div class="col-4">ID</div>
+    <div class="col-8">{{transaction.id}}</div>
+    <div class="col-4">Event ID</div>
+    <div class="col-8">{{transaction.eventID}}</div>
+    <div class="col-4">Debtor ID</div>
+    <div class="col-8">{{transaction.debtorID}}</div>
+    <div class="col-4">Creditor ID</div>
+    <div class="col-8">{{transaction.creditorID}}</div>
+    <div class="col-4">Value</div>
+    <div class="col-8">{{transaction.value}} {{transaction.currency}}</div>
+    <div class="col-4">Details</div>
+    <div class="col-12">{{transaction.details}}</div>
+    <div class="col-4">
+      <img src="{{transaction.imageUrl}}" *ngIf="transaction.imageUrl ">
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="onUpdate(transaction.id)">Edit</button>
+
+</div>
