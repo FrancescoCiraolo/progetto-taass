@@ -14,8 +14,8 @@ public class IinaEventsApplication {
 		SpringApplication.run(IinaEventsApplication.class, args);
 	}
 
-	@GetMapping("/get-event-info")
+/*	@GetMapping("/get-event-info")
 	public String getEventInfo(@RequestParam("id") String eventID) {
 		return String.format("Info about event %s", eventID);
-	}
+	}*/
 }
